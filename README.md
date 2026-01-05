@@ -27,7 +27,7 @@
 
 | 기술 (Technology) | 선정 이유 (Why Used?) |
 | --- | --- |
-| **Java 17 & Spring Boot 3.x** | 최신 Java 환경에서의 안정적이고 생산성 높은 백엔드 구축 |
+| **Java 17 & Spring Boot 3.5.9** | 최신 Java 환경에서의 안정적이고 생산성 높은 백엔드 구축 |
 | **MySQL 8.0** | ACID 트랜잭션을 보장하여 쿠폰 발급의 최종 데이터 정합성 유지 |
 | **Redis** | In-memory 기반의 빠른 속도로 재고 확인 및 **분산 락(Distributed Lock)** 구현 |
 | **Apache Kafka** | 요청 폭주 시 DB 병목 현상을 막기 위한 메시지 브로커 (Producer-Consumer 패턴) |
