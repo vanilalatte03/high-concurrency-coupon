@@ -1,4 +1,4 @@
-package com.example.highconcurrencycoupon;
+package com.vanilalatte.couponsystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

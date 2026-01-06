@@ -1,5 +1,4 @@
-package com.example.highconcurrencycoupon.coupon;
-
+package com.vanilalatte.couponsystem.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
