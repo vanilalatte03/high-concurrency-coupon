@@ -12,10 +12,10 @@ public class CouponService {
     private final CouponRepository couponRepository;
 
     @Transactional
-    public synchronized void issue(Long couponId) {
-        Coupon coupon = couponRepository.findById(couponId)
+    public void issue(Long couponId) {
+        Coupon coupon = couponRepository.findByIdWithPessimisticLock(couponId)
                 .orElseThrow(() -> new RuntimeException("쿠폰을 찾을 수 없습니다."));
 
-        coupon.issue(); // 이 안에서 수량 체크 후 증가
+        coupon.issue();
     }
 }
