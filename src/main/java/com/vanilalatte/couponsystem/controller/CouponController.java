@@ -1,7 +1,7 @@
 package com.vanilalatte.couponsystem.controller;
 
+import com.vanilalatte.couponsystem.facade.CouponIssueFacade;
 import lombok.RequiredArgsConstructor;
-import com.vanilalatte.couponsystem.service.CouponService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/coupons")
 public class CouponController {
-    private final CouponService couponService;
+    private final CouponIssueFacade couponIssueFacade;
 
-    @PostMapping("/{id}/issue")
-    public String issueCoupon(@PathVariable Long id) {
-        couponService.issue(id);
+    @PostMapping("/{couponId}/issue")
+    public String issueCoupon(@PathVariable Long couponId) {
+        couponIssueFacade.issue(couponId);
+
         return "쿠폰 발급 성공!";
     }
 }

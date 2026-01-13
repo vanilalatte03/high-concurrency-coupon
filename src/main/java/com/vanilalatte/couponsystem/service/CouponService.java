@@ -14,33 +14,12 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class CouponService {
     private final CouponRepository couponRepository;
-    private final RedissonClient redissonClient;
 
+    @Transactional
     public void issue(Long couponId) {
-        String lockName = "conpon_lock:" + couponId;
-        RLock lock = redissonClient.getLock(lockName);
+        Coupon coupon = couponRepository.findById(couponId)
+                .orElseThrow(() -> new IllegalArgumentException("쿠폰이 존재하지 않습니다."));
 
-        try {
-            boolean available = lock.tryLock(10, 1, TimeUnit.SECONDS);
-
-            if (!available) {
-                System.out.println("락 획득 실패");
-                return;
-            }
-
-            Coupon coupon = couponRepository.findById(couponId)
-                    .orElseThrow(() -> new RuntimeException("쿠폰을 찾을 수 없습니다."));
-
-            coupon.issue();
-            couponRepository.save(coupon);
-
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (lock.isLocked() && lock.isHeldByCurrentThread()) {
-                lock.unlock();
-            }
-        }
-
+        coupon.issue();
     }
 }
