@@ -1,6 +1,6 @@
 package com.vanilalatte.couponsystem.facade;
 
-import com.vanilalatte.couponsystem.service.CouponService;
+import com.vanilalatte.couponsystem.service.CouponIssueService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class CouponIssueFacade {
     private final RedissonClient redissonClient;
-    private final CouponService couponService;
+    private final CouponIssueService couponService;
 
     public void issue(Long couponId) {
         String lockName = "coupon_lock:" + couponId;
